@@ -7,7 +7,7 @@ import tictactoeai
 import functions
 from rich import print
 from listen import Listen
-from speech import say
+#from speech import say
 
 
 from prompt_toolkit import PromptSession
@@ -162,8 +162,8 @@ def process_command(command):
                     i, val)
     data = os.popen(dictionary[f"{default_terminal} command"]).read()
 
-    if (dictionary["summary"]):
-        say(dictionary["summary"])
+    #if (dictionary["summary"]):
+        #say(dictionary["summary"])
     return (dictionary["summary"], data)
     # if ((isinstance(dictionary["required details"], list)) and len(dictionary["required details"]) != 0):
     #     print("Please fill the required details")
