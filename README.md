@@ -69,8 +69,7 @@ Welcome to Jarvis Jr, a revolutionary command line interface designed for sto in
 git clone https://github.com/MegaaDev/Sudo_force.git
 
 # Build the docker image
-docker build . -t <<filename>>
+docker build . -t <<cliappgui>>
 
 # Run the script
-run ./script.sh
-   
+./script.sh
