@@ -21,9 +21,8 @@ class App(customtkinter.CTk):
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=2)
-
-        photo = PhotoImage(
-            file=r"D:\Desktop\bharathx\Jarvis-Jr-sudo-force\mic.png")
+        photo = customtkinter.CTkImage(Image.open(
+            r"D:\Desktop\bharathx\Jarvis-Jr-sudo-force\mic.png"))
 
         # create navigation frame
         self.navigation_frame = customtkinter.CTkFrame(self, corner_radius=0)
@@ -57,6 +56,11 @@ class App(customtkinter.CTk):
             global var
             global message
             var = self.entry_frame_1.get()
+
+            final(var)
+            data = final(var)
+            if (data):
+                message.append((data[0]+"\n"+data[1]))
             if ("clear" in var):
                 self.entry_frame_1.select_clear()
                 self.entry_frame_1 = customtkinter.CTkEntry(self.home_frame,
@@ -72,10 +76,7 @@ class App(customtkinter.CTk):
                 self.textbox.grid(
                     row=2, column=0, sticky="w", padx=10, pady=20)
                 return
-            data = final(var)
-            if (data):
-                message.append((data[0]+"\n"+data[1]))
-            # data = final(var)
+
             self.textbox = customtkinter.CTkTextbox(
                 self.home_frame, width=700, height=600, border_width=2, corner_radius=10)
             self.textbox.grid(row=2, column=0, sticky="w", padx=10, pady=20)
@@ -92,13 +93,15 @@ class App(customtkinter.CTk):
                 row=1, column=0, ipadx=5, padx=10, pady=10,)
 
         def voice_recog_event():
-            # dialog = customtkinter.CTkInputDialog(text="Type in a number:", title="Test")
             global var
             global message
-            dialog = customtkinter.CTkInputDialog(
-                text="Listening...", title="Voice Recognition")
-            print("Number:", dialog.get_input())
+            self.textbox = customtkinter.CTkTextbox(
+                self.home_frame, width=700, height=800, border_width=2, corner_radius=10)
+            self.textbox.grid(row=2, column=0, sticky="w", padx=10, pady=10)
+            self.textbox.insert("0.0", f"Listening....\n")
             var = Listen()
+            data = final(var)
+
             if ("clear" in var):
                 self.entry_frame_1.select_clear()
                 self.entry_frame_1 = customtkinter.CTkEntry(self.home_frame,
@@ -114,10 +117,8 @@ class App(customtkinter.CTk):
                 self.textbox.grid(
                     row=2, column=0, sticky="w", padx=10, pady=10)
                 return
-            data = final(var)
             if (data):
                 message.append((data[0]+"\n"+data[1]))
-            # data = final(var)
             self.textbox = customtkinter.CTkTextbox(
                 self.home_frame, width=700, height=800, border_width=2, corner_radius=10)
             self.textbox.grid(row=2, column=0, sticky="w", padx=10, pady=10)
@@ -163,23 +164,21 @@ class App(customtkinter.CTk):
         self.home_frame_button_2.grid(
             row=1, column=2, ipadx=5, padx=10, pady=10)
 
-        # create second frame
-
         def gptClick():
-            data = chat_with_gpt(self.second_entry_frame.get())
+            data = chat_with_gpt(self.entry_frame_2.get())
             # data = final(var)
             self.textbox2 = customtkinter.CTkTextbox(
                 self.second_frame, width=500, height=800, border_width=2, corner_radius=10)
             self.textbox2.grid(row=2, column=0, sticky="w", padx=10, pady=10)
             self.textbox2.insert("0.0", f"{data}\n")
-            self.second_entry_frame.select_clear()
-            self.second_entry_frame = customtkinter.CTkEntry(self.second_frame,
-                                                             placeholder_text="Hey, what do you like to talk about",
-                                                             width=500,
-                                                             height=40,
-                                                             border_width=2,
-                                                             corner_radius=10)
-            self.second_entry_frame.grid(
+            self.entry_frame_2.select_clear()
+            self.entry_frame_2 = customtkinter.CTkEntry(self.second_frame,
+                                                        placeholder_text="Hey, what do you like to talk about",
+                                                        width=500,
+                                                        height=40,
+                                                        border_width=2,
+                                                        corner_radius=10)
+            self.entry_frame_2.grid(
                 row=1, column=0, ipadx=5, padx=10, pady=10,)
             self.second_frame_button_2 = customtkinter.CTkButton(self.second_frame, text="Execute", compound="right", width=75, height=40, border_width=2,
                                                                  corner_radius=10, command=gptClick)
@@ -199,13 +198,13 @@ class App(customtkinter.CTk):
         self.second_frame_button_1 = customtkinter.CTkButton(
             self.second_frame, text="")
         self.home_frame_button_1.grid(row=1, column=0, padx=20, pady=10)
-        self.entry_frame_1 = customtkinter.CTkEntry(self.second_frame,
+        self.entry_frame_2 = customtkinter.CTkEntry(self.second_frame,
                                                     placeholder_text="Hey, What wpuld you like to talk about?",
                                                     width=412,
                                                     height=40,
                                                     border_width=2,
                                                     corner_radius=10)
-        self.entry_frame_1.grid(row=1, column=0, ipadx=5, padx=10, pady=10,)
+        self.entry_frame_2.grid(row=1, column=0, ipadx=5, padx=10, pady=10,)
         # self.entry.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
         self.voice_recog_2 = customtkinter.CTkButton(self.second_frame, text=None, text_color="black", compound="right", width=40, height=40, border_width=2,

@@ -15,15 +15,15 @@ from prompt_toolkit.styles import Style
 
 
 import customtkinter
-import tkinter
+# import tkinter
 
 customtkinter.set_appearance_mode("dark")
 
-app = customtkinter.CTk()
-app.geometry("400x300")
+# app = customtkinter.CTk()
+# app.geometry("400x300")
 
 
-app.mainloop()
+# app.mainloop()
 
 custom_style = Style.from_dict({
     'prompt': 'fg:#ff0066',
@@ -162,15 +162,28 @@ def process_command(command):
     if (dictionary["summary"]):
         say(dictionary["summary"])
     return (dictionary["summary"], data)
+    # if ((isinstance(dictionary["required details"], list)) and len(dictionary["required details"]) != 0):
+    #     print("Please fill the required details")
+    #     for i in dictionary["required details"]:
+
+    #         val = input(i+": ")
+    #         print(dictionary[f"{default_terminal} command"])
+    #         dictionary[f"{default_terminal} command"] = dictionary[f"{default_terminal} command"].replace(
+    #             i, val)
+    # os.system(dictionary[f"{default_terminal} command"])
+
+    # if (dictionary["summary"]):
+    #     say(dictionary["summary"])
+    # return dictionary["summary"]
 
 
 # while True:
-#     # choice = session.prompt(
-#     #     "Click 1 to enter the command in plain english, Click 2 for Speech recognition  ")
-#     # if (choice == "1"):
-#     #     user_input = session.prompt("Enter your command in plain English: ")
-#     # else:
-#     #     user_input = Listen()
+#     choice = session.prompt(
+#         "Click 1 to enter the command in plain english, Click 2 for Speech recognition  ")
+#     if (choice == "1"):
+#         user_input = session.prompt("Enter your command in plain English: ")
+#     else:
+#         user_input = Listen()
 
 #     # user_input = command
 

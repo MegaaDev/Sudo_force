@@ -1,13 +1,13 @@
 import typer
 import sys
-from selectolax.parser import HTMLParser 
+from selectolax.parser import HTMLParser
 import requests
 from rich import print
 from pydantic import BaseModel
 
 app = typer.Typer()
 
-USERS : dict[str, str] = {"sid":"123", "delta":"234"}
+USERS: dict[str, str] = {"sid": "123", "delta": "234"}
 '''
 @app.command()
 def hello():
@@ -18,6 +18,8 @@ def hello():
 def goodbye():
     print("Have a good day Sid/nHope to see you again")
 '''
+
+
 @app.command()
 def unlock(
     username: str = typer.Option(..., prompt=True),
@@ -27,12 +29,10 @@ def unlock(
         print("[red] incorrect uername or pswd[/red]")
         raise typer.Exit(code=1)
     print(f"[green] Welcome {username} :)[/green]")
-    
-    
+
 
 if __name__ == "__main__":
     app()
-    
 
 
 '''

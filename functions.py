@@ -46,18 +46,6 @@ def playMusic():
         if verify_folder.lower() == "y":
             music_folder_current_user = input(
                 "Enter the path to your music folder: ")
-            '''
-            print("Searching for audio files...")
-            audio_folders = find_audio_folders("/home/nithin/")
-            if audio_folders is not None:
-                print("Folders containing audio files:")
-                for folder in audio_folders:
-                    print(folder)
-                folder_index = int(input("Enter the index of the folder you want to play music from: "))
-                music_folder_current_user = audio_folders[folder_index]
-            else:
-                print("audio_folders is None")
-            '''
             files = os.listdir(music_folder_current_user)
             files = sorted(files, key=lambda x: os.path.getmtime(
                 os.path.join(music_folder_current_user, x)), reverse=True)
@@ -108,5 +96,3 @@ def stopwatch():
         formatted_time = time.strftime("%H:%M:%S", time.gmtime(elapsed_time))
         print(formatted_time, end='\r')
         time.sleep(0.1)
-
-# need to work on ending it
