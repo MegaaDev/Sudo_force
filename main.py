@@ -7,7 +7,7 @@ import tictactoeai
 import functions
 from rich import print
 from listen import Listen
-#from speech import say
+# from speech import say
 
 
 from prompt_toolkit import PromptSession
@@ -54,7 +54,7 @@ def get_default_terminal():
 
 
 default_terminal = get_default_terminal()
-openai.api_key = "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"
+openai.api_key = ""
 
 
 prompt_template = """reply in the following format
@@ -110,7 +110,7 @@ def process_command(command):
             os.system("clear")
             functions.playMusic()
             return
-        if("joke" in command.lower()) or ("jokes" in command.lower()) or ("funny" in command.lower()) or ("laugh" in command.lower()):
+        if ("joke" in command.lower()) or ("jokes" in command.lower()) or ("funny" in command.lower()) or ("laugh" in command.lower()):
             os.system("clear")
             functions.joke()
             return
@@ -163,15 +163,16 @@ def process_command(command):
                 text="Enter the following details: "+i, title="Test")
             val = dialog.get_input()
             print(dictionary[f"{default_terminal} command"])
-            if(default_terminal == "bash"):
-                dictionary[f"{default_terminal} command"] = dictionary[f"{default_terminal} command"].replace("<"+i+">", val)
+            if (default_terminal == "bash"):
+                dictionary[f"{default_terminal} command"] = dictionary[f"{default_terminal} command"].replace(
+                    "<"+i+">", val)
             else:
                 dictionary[f"{default_terminal} command"] = dictionary[f"{default_terminal} command"].replace(
                     i, val)
     data = os.popen(dictionary[f"{default_terminal} command"]).read()
 
-    #if (dictionary["summary"]):
-        #say(dictionary["summary"])
+    # if (dictionary["summary"]):
+    # say(dictionary["summary"])
     return (dictionary["summary"], data)
     # if ((isinstance(dictionary["required details"], list)) and len(dictionary["required details"]) != 0):
     #     print("Please fill the required details")
