@@ -7,7 +7,7 @@ def Listen():
     with sr.Microphone() as source:
         print("Listening....")
         r.pause_threshold = 1
-        audio = r.listen(source, 0, 5)
+        audio = r.listen(source, 0, 8)
 
     try:
         print("Recognizing...")
