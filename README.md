@@ -75,3 +75,8 @@ docker build . -t <<cliappgui>>
 ./script.sh
 
 # Open GUI.py file and run the python file
+```
+## DEMO
+
+https://github.com/MegaaDev/Sudo_force/assets/131200190/5ab2b8d1-2bb6-41cf-bb5c-4241d7a4d2aa
+
