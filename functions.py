@@ -6,8 +6,10 @@ import os
 
 app = typer.Typer()
 
+
 def tossCoin():
-    print(random.choice(["H", "T"]))
+    return (random.choice(["H", "T"]))
+
 
 def find_audio_folders(search_path):
     command = (
@@ -22,15 +24,19 @@ def find_audio_folders(search_path):
         print(f"Error: {e}")
         return None
 
+
 def playMusic():
     music_folder_current_user = os.path.join(os.path.expanduser("~"), "Music")
     print("Music Folder for Current User:", music_folder_current_user)
-    
+
     files = os.listdir(music_folder_current_user)
 
-    audio_file_extensions = ['.mp3', '.wav', '.flac', '.mp4', '.mkv', '.webm', '.mov']
-    audio_files = [file for file in files if any(file.lower().endswith(ext) for ext in audio_file_extensions)]
-    audio_files = sorted(audio_files, key=lambda x: os.path.getmtime(os.path.join(music_folder_current_user, x)), reverse=True)
+    audio_file_extensions = ['.mp3', '.wav',
+                             '.flac', '.mp4', '.mkv', '.webm', '.mov']
+    audio_files = [file for file in files if any(
+        file.lower().endswith(ext) for ext in audio_file_extensions)]
+    audio_files = sorted(audio_files, key=lambda x: os.path.getmtime(
+        os.path.join(music_folder_current_user, x)), reverse=True)
 
     for file in audio_files:
         print(file)
@@ -38,7 +44,8 @@ def playMusic():
     while True:
         verify_folder = input("Choose a different folder? (y/n)")
         if verify_folder.lower() == "y":
-            music_folder_current_user = input("Enter the path to your music folder: ")
+            music_folder_current_user = input(
+                "Enter the path to your music folder: ")
             '''
             print("Searching for audio files...")
             audio_folders = find_audio_folders("/home/nithin/")
@@ -52,7 +59,8 @@ def playMusic():
                 print("audio_folders is None")
             '''
             files = os.listdir(music_folder_current_user)
-            files = sorted(files, key=lambda x: os.path.getmtime(os.path.join(music_folder_current_user, x)), reverse=True)
+            files = sorted(files, key=lambda x: os.path.getmtime(
+                os.path.join(music_folder_current_user, x)), reverse=True)
             for file in files:
                 print(file)
         else:
@@ -60,7 +68,8 @@ def playMusic():
 
     file_index = int(input("Enter the index of the file you want to play: "))
     if os.name == 'nt':
-        os.startfile(os.path.join(music_folder_current_user, files[file_index]))
+        os.startfile(os.path.join(
+            music_folder_current_user, files[file_index]))
     elif os.name == 'posix':
         file_path = os.path.join(music_folder_current_user, files[file_index])
         quoted_file_path = f'"{file_path}"'
@@ -68,7 +77,7 @@ def playMusic():
         os.system(command)
     else:
         print("Platform not recognized.")
-    
+
 
 def dateAndTime(command):
 
@@ -76,7 +85,7 @@ def dateAndTime(command):
         print(time.strftime('%Y-%m-%d %H:%M:%S'), end='\r')
     elif ("date" in command):
         print(time.strftime('%Y-%m-%d'), end='\r')
-    elif("time" in command):
+    elif ("time" in command):
         print(time.strftime('%H:%M:%S'), end='\r')
     else:
         print(time.strftime('%Y-%m-%d %H:%M:%S'), end='\r')
@@ -91,6 +100,7 @@ def countdown(seconds):
         print(formatted_time, end='\r')
         time.sleep(0.1)
 
+
 def stopwatch():
     start_time = int(time.time())
     while True:
@@ -99,6 +109,4 @@ def stopwatch():
         print(formatted_time, end='\r')
         time.sleep(0.1)
 
-#need to work on ending it
-
-    
+# need to work on ending it

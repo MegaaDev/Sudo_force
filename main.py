@@ -14,6 +14,17 @@ from prompt_toolkit import PromptSession
 from prompt_toolkit.styles import Style
 
 
+import customtkinter
+import tkinter
+
+customtkinter.set_appearance_mode("dark")
+
+app = customtkinter.CTk()
+app.geometry("400x300")
+
+
+app.mainloop()
+
 custom_style = Style.from_dict({
     'prompt': 'fg:#ff0066',
     'input': 'fg:#ff0066',
@@ -88,19 +99,23 @@ def process_command(command):
             os.system("clear")
             tictactoeai.init()
             return
-
-        if (command in ["toss", "flip"]) and ("coin" in command):  # check
-            os.system("clear")
-            functions.tossCoin()
+        if ("countdown" in command) or ("timer" in command):
+            time = chat_with_gpt(
+                f"below given sentence is a user generated sentence. find how long the timer should run, convert it to seconds and reply with only that message\n\n"+command)
+            # k = command.split()
+            # s =  int(k[-2])
+            functions.countdown(time)
             return
+        if ("toss" in command or "flip" in command) and ("coin" in command):  # check
+            return (functions.tossCoin(), None)
 
         if ("date" in command) or ("time" in command):
             functions.dateAndTime(command)
             return
 
-        if (command in ["stopwatch", "stop watch"]):
-            functions.stopwatch()
-            return
+        # if (command in ["stopwatch", "stop watch"]):
+        #     functions.stopwatch()
+        #     return
 
         if ("weather" in command):
             output = requests.get("https://www.wttr.in")
@@ -108,17 +123,13 @@ def process_command(command):
             if ("not found" in str(output.content)):
                 print("Sorry, not sure of your current city")
                 city = input("Enter your current city: ")
-            os.system("curl wttr.in/"+city)
+            # os.system("curl wttr.in/"+city)
+            # print(str(os.popen("curl wttr.in/")))
+            outfile = ""
+            req = 'echo "$(curl wttr.in/trichy)" >> outypyt.txt'
+            os.system(req)
             # say("Showing weather results.. ohhhhhhhhhhh its coold")
 
-            return
-
-        if ("countdown" in command) or ("timer" in command):
-            time = chat_with_gpt(
-                f"below given sentence is a user generated sentence. find how long the timer should run, convert it to seconds and reply with only that message\n\n"+command)
-            # k = command.split()
-            # s =  int(k[-2])
-            functions.countdown(time)
             return
 
     # cmd = chat_with_gpt(
@@ -140,28 +151,36 @@ def process_command(command):
     if ((isinstance(dictionary["required details"], list)) and len(dictionary["required details"]) != 0):
         print("Please fill the required details")
         for i in dictionary["required details"]:
-            val = input(i+": ")
+            dialog = customtkinter.CTkInputDialog(
+                text="Enter the following details: "+i, title="Test")
+            val = dialog.get_input()
             print(dictionary[f"{default_terminal} command"])
             dictionary[f"{default_terminal} command"] = dictionary[f"{default_terminal} command"].replace(
                 i, val)
-    os.system(dictionary[f"{default_terminal} command"])
+    data = os.popen(dictionary[f"{default_terminal} command"]).read()
+
     if (dictionary["summary"]):
         say(dictionary["summary"])
+    return (dictionary["summary"], data)
 
 
-while True:
-    choice = session.prompt(
-        "Click 1 to enter the command in plain english, Click 2 for Speech recognition  ")
-    if (choice == "1"):
-        user_input = session.prompt("Enter your command in plain English: ")
-    else:
-        user_input = Listen()
+# while True:
+#     # choice = session.prompt(
+#     #     "Click 1 to enter the command in plain english, Click 2 for Speech recognition  ")
+#     # if (choice == "1"):
+#     #     user_input = session.prompt("Enter your command in plain English: ")
+#     # else:
+#     #     user_input = Listen()
 
-    # user_input = session.prompt("Enter your command in plain English: ")
+#     # user_input = command
 
-    process_command(user_input)
-    ask_for_another = input(
-        "Do you want to perform another operation? (yes/no): ")
-    if ask_for_another.lower() != "yes":
-        print("Exiting...")
-        break
+#     process_command(user_input)
+#     ask_for_another = input(
+#         "Do you want to perform another operation? (yes/no): ")
+#     if ask_for_another.lower() != "yes":
+#         print("Exiting...")
+#         break
+def final(user_input):
+    while True:
+
+        return process_command(user_input)
