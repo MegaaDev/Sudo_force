@@ -73,3 +73,5 @@ docker build . -t <<cliappgui>>
 
 # Run the script
 ./script.sh
+
+# Open GUI.py file and run the python file
