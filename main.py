@@ -71,7 +71,7 @@ if (default_terminal == "bash"):
     prompt_template = """reply in the following format
 {
 \""""+default_terminal+""" command":\""""+default_terminal+""" command to perform the action.If all required details are provided, required details should be empty. Only if details like file name or folder name are not already provided, use <placeholder> in its place",
-"required details":"list the placeholders in the bash command here in the form of a python list",
+"required details":"list the placeholders in the bash command here in the form of a python list.",
 "summary":"very short summary of the action performed. the phrase must be in past tense"
 } to perform the below action
 
@@ -155,8 +155,11 @@ def process_command(command):
                 text="Enter the following details: "+i, title="Test")
             val = dialog.get_input()
             print(dictionary[f"{default_terminal} command"])
-            dictionary[f"{default_terminal} command"] = dictionary[f"{default_terminal} command"].replace(
-                i, val)
+            if(default_terminal == "bash"):
+                dictionary[f"{default_terminal} command"] = dictionary[f"{default_terminal} command"].replace("<"+i+">", val)
+            else:
+                dictionary[f"{default_terminal} command"] = dictionary[f"{default_terminal} command"].replace(
+                    i, val)
     data = os.popen(dictionary[f"{default_terminal} command"]).read()
 
     if (dictionary["summary"]):
