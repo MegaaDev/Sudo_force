@@ -1,1 +1,1 @@
-docker run -u=$(id -u $USER):$(id -g $USER) -e DISPLAY=$DISPLAY -e XDG_RUNTIME_DIR=/tmp -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v $(pwd)/app:/app -v /run/user/$(id -u $USER)/pipewire-0:/tmp/pipewire-0 --rm cliappgui
+docker run -u=$(id -u $USER):$(id -g $USER) -e DISPLAY=$DISPLAY -e XDG_RUNTIME_DIR=/tmp -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v $(pwd)/app:/app -v /run/user/$(id -u $USER)/pipewire-0:/tmp/pipewire-0 --rm <<imagename>>
