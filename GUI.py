@@ -198,7 +198,7 @@ class App(customtkinter.CTk):
             self.second_frame, text="")
         self.home_frame_button_1.grid(row=1, column=0, padx=20, pady=10)
         self.entry_frame_2 = customtkinter.CTkEntry(self.second_frame,
-                                                    placeholder_text="Hey, What wpuld you like to talk about?",
+                                                    placeholder_text="Hey, What would you like to talk about?",
                                                     width=412,
                                                     height=40,
                                                     border_width=2,
