@@ -104,7 +104,7 @@ def process_command(command):
                 f"below given sentence is a user generated sentence. find how long the timer should run, convert it to seconds and reply with only that message\n\n"+command)
             # k = command.split()
             # s =  int(k[-2])
-            functions.countdown(time)
+            functions.countdown(time.split(" ")[0])
             return
         if ("toss" in command or "flip" in command) and ("coin" in command):  # check
             return (functions.tossCoin(), None)

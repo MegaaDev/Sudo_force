@@ -81,12 +81,13 @@ def dateAndTime(command):
 
 
 def countdown(seconds):
-    start = int(time.time()) + seconds
+    start = int(time.time()) + int(seconds)
     while start >= int(time.time()):
         remaining_time = start - int(time.time())
         formatted_time = time.strftime("%H:%M:%S", time.gmtime(remaining_time))
         print(formatted_time, end='\r')
         time.sleep(0.1)
+    print()
 
 
 def stopwatch():

@@ -42,7 +42,7 @@ class App(customtkinter.CTk):
                                                       anchor="w", command=self.frame_2_button_event)
         self.frame_2_button.grid(row=2, column=0, sticky="ew")
 
-        self.appearance_mode_menu = customtkinter.CTkOptionMenu(self.navigation_frame, values=["Light", "Dark", "System"],
+        self.appearance_mode_menu = customtkinter.CTkOptionMenu(self.navigation_frame, values=["Dark", "Light", "System"],
                                                                 command=self.change_appearance_mode_event)
         self.appearance_mode_menu.grid(
             row=6, column=0, padx=20, pady=20, sticky="s")
