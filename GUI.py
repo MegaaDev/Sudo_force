@@ -22,7 +22,7 @@ class App(customtkinter.CTk):
         self.grid_rowconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=2)
         photo = customtkinter.CTkImage(Image.open(
-            r"D:\Desktop\bharathx\Jarvis-Jr-sudo-force\mic.png"))
+            r"mic.png"))
 
         # create navigation frame
         self.navigation_frame = customtkinter.CTkFrame(self, corner_radius=0)
