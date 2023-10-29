@@ -57,7 +57,6 @@ class App(customtkinter.CTk):
             global message
             var = self.entry_frame_1.get()
 
-            final(var)
             data = final(var)
             if (data):
                 message.append((data[0]+"\n"+data[1]))
