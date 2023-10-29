@@ -2,6 +2,7 @@ import typer
 import random
 import time
 import os
+import requests
 
 
 app = typer.Typer()
@@ -10,6 +11,18 @@ app = typer.Typer()
 def tossCoin():
     return (random.choice(["H", "T"]))
 
+
+
+def joke():
+    url = "https://icanhazdadjoke.com"
+    headers = {"Accept": "text/plain"}
+    
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        print(response.text)
+    else:
+        print("Failed to fetch a joke. Please try again later.")
 
 def find_audio_folders(search_path):
     command = (

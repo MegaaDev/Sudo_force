@@ -7,7 +7,7 @@ import tictactoeai
 import functions
 from rich import print
 from listen import Listen
-from speech import say
+#from speech import say
 
 
 from prompt_toolkit import PromptSession
@@ -106,6 +106,14 @@ def process_command(command):
             # s =  int(k[-2])
             functions.countdown(time.split(" ")[0])
             return
+        if ("play" in command) and ("media" in command):
+            os.system("clear")
+            functions.playMusic()
+            return
+        if("joke" in command.lower()) or ("jokes" in command.lower()) or ("funny" in command.lower()) or ("laugh" in command.lower()):
+            os.system("clear")
+            functions.joke()
+            return
         if ("toss" in command or "flip" in command) and ("coin" in command):  # check
             return (functions.tossCoin(), None)
 
@@ -162,8 +170,8 @@ def process_command(command):
                     i, val)
     data = os.popen(dictionary[f"{default_terminal} command"]).read()
 
-    if (dictionary["summary"]):
-        say(dictionary["summary"])
+    #if (dictionary["summary"]):
+        #say(dictionary["summary"])
     return (dictionary["summary"], data)
     # if ((isinstance(dictionary["required details"], list)) and len(dictionary["required details"]) != 0):
     #     print("Please fill the required details")
